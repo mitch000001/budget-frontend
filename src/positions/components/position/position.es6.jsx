@@ -1,12 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
-import {Money} from './money';
-
-let styles = {
-  money: {
-    display: 'inline-block'
-  }
-}
+import {Money} from '../money/money';
+import styles from './styles.css';
 
 export class Position extends Component {
 
@@ -16,9 +11,10 @@ export class Position extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.container} style={this.props.style}>
         <div>{this.formatDate(this.props.bookingDate)}</div>
-        <Money value={this.props.value} currency={this.props.currency} />
+        <div className={styles.description}>{this.props.description}</div>
+        <Money style={{padding: 0}} value={this.props.value} currency={this.props.currency} />
       </div>
     );
   }
@@ -27,11 +23,14 @@ export class Position extends Component {
 
 Position.propTypes = {
   value: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
   bookingDate: PropTypes.instanceOf(Date).isRequired,
   dueDate: PropTypes.instanceOf(Date),
-  currency: PropTypes.string
+  currency: PropTypes.string,
+  style: PropTypes.object,
 };
 
 Position.defaultProps = {
-  currency: '€'
+  currency: '€',
+  style: {},
 };

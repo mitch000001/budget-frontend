@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 
 class Hello extends Component {
 
+  handleOnLoad(evt) {
+    console.log("Loaded:", evt);
+  }
+
   render() {
     return (
       <div>

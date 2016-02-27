@@ -1,13 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-
-let styles = {
-  valueEarning: {
-    color: '#000000'
-  },
-  valueExpense: {
-    color: '#ff0000'
-  }
-}
+import styles from './styles.css';
 
 export class Money extends Component {
 
@@ -16,9 +8,9 @@ export class Money extends Component {
   }
 
   render() {
-    let valueStyles = this.props.value > 0 ? styles.valueEarning : styles.valueExpense;
+    let valueStyles = this.props.value > 0 ? styles.earning : styles.expense;
     return (
-      <div style={valueStyles}>
+      <div className={valueStyles} style={this.props.style}>
         {this.formatValue(this.props.value)}&nbsp;{this.props.currency}
       </div>
     );
@@ -28,8 +20,10 @@ export class Money extends Component {
 
 Money.propTypes = {
   value: PropTypes.number.isRequired,
-  currency: PropTypes.string
+  currency: PropTypes.string,
+  style: PropTypes.object,
 };
 Money.defaultProps = {
-  currency: '€'
+  currency: '€',
+  style: {},
 };

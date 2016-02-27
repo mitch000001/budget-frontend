@@ -1,0 +1,14 @@
+.money {
+  font-weight: bold;
+  padding: 0.5em;
+}
+
+.earning {
+  composes: money;
+  color: #000000;
+}
+
+.expense {
+  composes: money;
+  color: #FF0000;
+}
